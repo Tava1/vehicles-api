@@ -1,0 +1,8 @@
+node_modules
+.vscode
+
+# Ignore database file
+src/database/data/vehicles.sqlite
+
+# Ignore content uploaded (images)
+uploads/*
