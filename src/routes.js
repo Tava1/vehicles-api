@@ -47,6 +47,20 @@ routes.post('/cars/new', celebrate({
   })
 }), CarsController.create)
 
+routes.put('/cars/:id', celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    model: Joi.string().required(),
+    description: Joi.string().required(),
+    horsePower: Joi.number().required().integer(),
+    torqueNm: Joi.number().required().integer(),
+    price: Joi.number().precision(2),
+    typeVehicle: Joi.string().required(),
+    idBrand: Joi.number().required().integer()
+  })
+}), CarsController.update)
+
+routes.delete('/cars/:id', CarsController.delete)
+
 // Motorcycle
 routes.get('/motorcycle', MotorcyclesController.read)
 
