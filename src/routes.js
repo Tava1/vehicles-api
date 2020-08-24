@@ -20,20 +20,17 @@ routes.get('/', (req, res) => {
 // Brands
 routes.get('/brands', BrandsController.read)
 
-routes.post('/brands/new', upload.single('image'), celebrate({
-  [Segments.BODY]: Joi.object().keys({
-    name: Joi.string(),
-    image: Joi.binary(),
-  })
+routes.post('/brands/new', upload.single('image'),
+  // celebrate({
+  //   [Segments.BODY]: Joi.object().keys({
+  //     name: Joi.string(),
+  //   })
+  // }), 
+  BrandsController.create)
 
-}), BrandsController.create)
+routes.put('/brands/:id', upload.single('image'), BrandsController.update)
 
-
-// Para teste da req sem celebrate :
-// routes.post('/brands/new', upload.single('image'), (req, res) => {
-//   console.log(req.file.path)
-//   return res.sendStatus(200)
-// })
+routes.delete('/brands/:id', BrandsController.delete)
 
 // Cars
 routes.get('/cars', CarsController.read)
